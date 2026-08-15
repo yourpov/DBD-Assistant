@@ -1,0 +1,37 @@
+[package]
+name = "dbd-assistant"
+version = "0.1.0"
+description = "Dead by Daylight Assistant"
+authors = ["pov"]
+license = "MIT"
+repository = "https://github.com/yourpov/DBD-Assistant"
+edition = "2021"
+
+[lib]
+name = "dbd_assistant_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }
+
+[dependencies]
+tauri = { version = "2.0", features = [] }
+tauri-plugin-opener = "2.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+tokio = { version = "1", features = ["sync", "rt", "fs", "time", "process", "macros"] }
+rust-ini = "0.21"
+sysinfo = "0.32"
+async-trait = "0.1"
+reqwest = { version = "0.12", features = ["json"] }
+base64 = "0.22"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros"] }
+
+[profile.release]
+opt-level = "s"
+lto = true
+panic = "abort"
+strip = true
